@@ -7,6 +7,16 @@ let scene,
     clock,
     wave;
 
+const mousePositon = {
+    x: 0,
+    y: 0
+};
+
+const mousePrevPosition = {
+    x: 0,
+    y: 0
+};
+
 function createScene() {
     scene = new THREE.Scene();
 
@@ -16,7 +26,7 @@ function createScene() {
         0.1,
         100
     );
-    camera.position.z = 50;
+    camera.position.z = 1;
 
     renderer = new THREE.WebGLRenderer({
         alpha: true,
@@ -35,9 +45,26 @@ function addToDom() {
     document.body.appendChild(canvas);
 }
 
+function setMouseEventListener() {
+    document.addEventListener('mousemove', (e) => {
+        mousePositon.x = e.pageX;
+        mousePositon.y = e.pageY;            
+    });
+
+    const velocityCoef = 0.1;
+
+    setInterval(() => {
+        mousePrevPosition.x += (mousePositon.x - mousePrevPosition.x) * velocityCoef;
+        mousePrevPosition.y += (mousePositon.y - mousePrevPosition.y) * velocityCoef;
+
+        console.log(mousePrevPosition.x)
+    }, 50);
+}
+
 function update() {
     const elapsed = clock.getElapsedTime();
     wave.updateTime(elapsed);
+    wave.updateMouse(mousePrevPosition);
 }
 
 function render() {
@@ -54,6 +81,7 @@ function tick() {
 export default function init() {
     createScene();
     addToDom();
+    setMouseEventListener();
     
     tick();
 }

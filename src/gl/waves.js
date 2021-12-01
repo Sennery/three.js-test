@@ -24,13 +24,13 @@ function init({camera}) {
 
     const camUnit = calculateUnitSize({distance: camera.position.z - waves.position.z, cameraFov: camera.fov, cameraAspect: camera.aspect});
 
-    waves.scale.x = camUnit.width * 295/window.innerWidth;
-    waves.scale.y = camUnit.height * 448/window.innerHeight;
+    waves.scale.x = camUnit.width * 1920/window.innerWidth;
+    waves.scale.y = camUnit.height * 967/window.innerHeight;
 
-    waves.position.x = -(camUnit.width / 2) + (waves.scale.x / 2);
-    waves.position.x += ((50 + 0) / window.innerWidth) * camUnit.width;
+    // waves.position.x = -(camUnit.width / 2) + (waves.scale.x / 2);
+    // waves.position.x += ((50 + 0) / window.innerWidth) * camUnit.width;
 
-    console.log(camUnit)
+    // console.log(camUnit)
 
     const geometry = planeGeometry;
     const material = planeMaterial.clone();
@@ -39,6 +39,8 @@ function init({camera}) {
         uTexture: { value: 0 },
         uTime: { value: 0 },
         uProg: { value: 1 },
+        uMouseX: { value: 0 },
+        uMouseY: { value: 0 },
     }
 
     const img = document.getElementById('pic');
@@ -52,16 +54,15 @@ function init({camera}) {
     const mesh = new THREE.Mesh(geometry, material);
     waves.add(mesh);
 
-    let backwards = 0.1;
+    let backwards = 0.05;
 
     waves.updateTime = (time) => {
         material.uniforms.uTime.value = time;
+    };
 
-        waves.position.x += backwards;
-        if (waves.position.x > 40 || waves.position.x < -40) {
-            backwards *= -1;
-        }
-        
+    waves.updateMouse = ({x, y}) => {
+        material.uniforms.uMouseX.value = x / 100;
+        material.uniforms.uMouseY.value = y / 100;
     };
 
     return waves;

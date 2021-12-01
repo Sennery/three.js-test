@@ -14,9 +14,9 @@ void main() {
   vec3 texture;
 
   float w = wave;
-  float r = texture2D(uTexture, dUv + vec2(0., 0.) + uProg * w * 0.05).r;
+  float r = texture2D(uTexture, dUv + vec2(0., 0.) + uProg * w * 5.).r;
   float g = texture2D(uTexture, dUv + vec2(0., 0.) + uProg * w * 0.0).g;
-  float b = texture2D(uTexture, dUv + vec2(0., 0.) + uProg * w * -0.02).b;
+  float b = texture2D(uTexture, dUv + vec2(0., 0.) + uProg * w * -10.).b;
   texture = vec3(r, g, b);    
   
   
