@@ -12,9 +12,9 @@ void main() {
   vec3 pos = position;
 
         
-  pos.z += noise(vec3(pos.x * uMouseX + uTime, pos.y * uMouseY + uTime, 0. )) * uProg / 200.;
+  pos.z += noise(vec3(pos.x * uMouseX + uTime, pos.y * uMouseY + uTime, 0. )) * uProg / 10.;
   wave = pos.z;
-  pos.z *= 10.;    
+  pos.z *= 100.;    
   
 
   vUv = uv;

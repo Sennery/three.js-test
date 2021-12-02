@@ -21,12 +21,12 @@ function createScene() {
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(
-        45,
+        70,
         window.innerWidth / window.innerHeight,
         0.1,
         100
     );
-    camera.position.z = 1;
+    camera.position.z = 50;
 
     renderer = new THREE.WebGLRenderer({
         alpha: true,
@@ -51,7 +51,7 @@ function setMouseEventListener() {
         mousePositon.y = e.pageY;            
     });
 
-    const velocityCoef = 0.1;
+    const velocityCoef = 0.01;
 
     setInterval(() => {
         mousePrevPosition.x += (mousePositon.x - mousePrevPosition.x) * velocityCoef;

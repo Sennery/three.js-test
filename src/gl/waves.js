@@ -5,7 +5,7 @@ import fragment from './shaders/fragment.glsl'
 
 const loader = new THREE.TextureLoader();
 
-const planeGeometry = new THREE.PlaneBufferGeometry(1, 1, 50, 50);
+const planeGeometry = new THREE.PlaneBufferGeometry(1, 1, 1000, 1000);
 const planeMaterial = new THREE.ShaderMaterial({
     vertexShader: glsl(vertex),
     fragmentShader: glsl(fragment),
@@ -30,8 +30,6 @@ function init({camera}) {
     // waves.position.x = -(camUnit.width / 2) + (waves.scale.x / 2);
     // waves.position.x += ((50 + 0) / window.innerWidth) * camUnit.width;
 
-    // console.log(camUnit)
-
     const geometry = planeGeometry;
     const material = planeMaterial.clone();
 
@@ -53,8 +51,6 @@ function init({camera}) {
 
     const mesh = new THREE.Mesh(geometry, material);
     waves.add(mesh);
-
-    let backwards = 0.05;
 
     waves.updateTime = (time) => {
         material.uniforms.uTime.value = time;
