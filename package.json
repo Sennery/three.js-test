@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "rd /s /q dist && webpack",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "github-pages": "rd /s /q docs && webpack --env pages"
   },
   "repository": {
     "type": "git",
