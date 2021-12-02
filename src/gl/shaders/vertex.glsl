@@ -2,7 +2,6 @@ precision mediump float;
 varying vec2 vUv;
 varying float wave;
 uniform float uTime;
-uniform float uProg;
 uniform float uMouseX;
 uniform float uMouseY;
 
@@ -12,9 +11,9 @@ void main() {
   vec3 pos = position;
 
         
-  pos.z += noise(vec3(pos.x * uMouseX + uTime, pos.y * uMouseY + uTime, 0. )) * uProg / 10.;
+  pos.z += noise(vec3(pos.x * uMouseX + uTime, pos.y * uMouseY + uTime, 0. )) / 5.;
   wave = pos.z;
-  pos.z *= 100.;    
+  pos.z *= 50.;    
   
 
   vUv = uv;

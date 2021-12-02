@@ -8,13 +8,13 @@ let scene,
     wave;
 
 const mousePositon = {
-    x: 0,
-    y: 0
+    x: 500,
+    y: 500
 };
 
 const mousePrevPosition = {
-    x: 0,
-    y: 0
+    x: 500,
+    y: 500
 };
 
 function createScene() {
@@ -30,6 +30,7 @@ function createScene() {
 
     renderer = new THREE.WebGLRenderer({
         alpha: true,
+        premultipliedAlpha: false
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0xF2F2F2, 0);
@@ -49,6 +50,11 @@ function setMouseEventListener() {
     document.addEventListener('mousemove', (e) => {
         mousePositon.x = e.pageX;
         mousePositon.y = e.pageY;            
+    });
+
+    document.addEventListener('mousedown', (e) => {
+        mousePrevPosition.x += 500;
+        mousePrevPosition.y += 500;            
     });
 
     const velocityCoef = 0.01;

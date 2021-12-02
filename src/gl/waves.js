@@ -36,7 +36,6 @@ function init({camera}) {
     material.uniforms = {
         uTexture: { value: 0 },
         uTime: { value: 0 },
-        uProg: { value: 1 },
         uMouseX: { value: 0 },
         uMouseY: { value: 0 },
     }
